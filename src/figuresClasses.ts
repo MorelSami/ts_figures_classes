@@ -1,10 +1,6 @@
 type Shape = 'triangle' | 'circle' | 'rectangle';
 
-enum Color {
-  Red = 'red',
-  Green = 'green',
-  Blue = 'blue',
-}
+type Color = 'red' | 'green' | 'blue';
 export interface Figure {
   shape: Shape;
   color: Color;
@@ -37,8 +33,9 @@ export class Triangle implements Figure {
     const semiA = semiPerimeter - this.a;
     const semiB = semiPerimeter - this.b;
     const semiC = semiPerimeter - this.c;
+    const area = Math.sqrt(semiPerimeter * (semiA * semiB * semiC));
 
-    return Math.sqrt(semiPerimeter * (semiA * semiB * semiC));
+    return Math.floor(area * 100) / 100;
   }
 }
 
@@ -55,7 +52,9 @@ export class Circle implements Figure {
   }
 
   getArea(): number {
-    return Math.floor(+(Math.PI * this.radius ** 2).toFixed(3) * 100) / 100;
+    const area = Math.PI * this.radius ** 2;
+
+    return Math.floor(area * 100) / 100;
   }
 }
 
@@ -73,7 +72,9 @@ export class Rectangle implements Figure {
   }
 
   getArea(): number {
-    return this.width * this.height;
+    const area = this.width * this.height;
+
+    return Math.floor(area * 100) / 100;
   }
 }
 
